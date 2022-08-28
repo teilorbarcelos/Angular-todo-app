@@ -9,12 +9,15 @@ import { TaskListItem } from '../../model/task-list-item'
   styleUrls: ['./todo-list.component.scss'],
 })
 export class TodoListComponent implements DoCheck {
-  public tasksList: TaskListItem[] = []
+  public tasksList: TaskListItem[] = JSON.parse(
+    localStorage.getItem('myAngularTo-do-List:') ?? '[]',
+  )
 
   constructor() {}
 
   ngDoCheck(): void {
     this.tasksList.sort((a, b) => Number(a.checked) - Number(b.checked))
+    localStorage.setItem('myAngularTo-do-List:', JSON.stringify(this.tasksList))
   }
 
   public setEmitTaskList(event: string) {
