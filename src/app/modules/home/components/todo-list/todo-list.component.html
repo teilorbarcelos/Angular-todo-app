@@ -2,7 +2,12 @@
   <ul *ngIf="tasksList.length">
     <li *ngFor="let item of tasksList; let i = index">
       <input type="checkbox" [(ngModel)]="item.checked" />
-      <input type="text" [(ngModel)]="item.name" />
+      <input
+        type="text"
+        [(ngModel)]="item.name"
+        [ngClass]="{ checked: item.checked }"
+        (blur)="inputChangeValidation(item.name, i)"
+      />
 
       <button (click)="listItemDelete(i)">
         <img src="assets/icons/icon-trash.svg" alt="" />
