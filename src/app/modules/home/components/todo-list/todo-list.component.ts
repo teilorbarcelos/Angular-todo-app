@@ -9,11 +9,15 @@ import { TaskListItem } from '../../model/task-list-item'
   styleUrls: ['./todo-list.component.scss'],
 })
 export class TodoListComponent implements OnInit {
-  public tasksList: TaskListItem[] = [{ checked: false, name: 'test 1' }]
+  public tasksList: TaskListItem[] = []
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  public setEmitTaskList(event: string) {
+    this.tasksList.push({ name: event, checked: false })
+  }
 
   public listItemDelete(index: number) {
     this.tasksList.splice(index, 1)
